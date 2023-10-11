@@ -2,14 +2,44 @@
 """ENTER YOUR SOLUTION HERE!"""
 
 class Employee:
-    def __init__(self, name):
+    def __init__(self, name, contractType, basePay, hourlyWage=None, hoursWorked=None,
+                 commissionType=None, commissionRate=None, bonus=None, contractsLanded=None):
         self.name = name
+        self.contractType = contractType
+        self.basePay = basePay
+        self.hourlyWage = hourlyWage
+        self.hoursWorked = hoursWorked
+        self.commissionType = commissionType
+        self.commissionRate = commissionRate
+        self.bonus = bonus
+        self.contractsLanded = contractsLanded
+
+     def calcContractPay(self):
+        if self.contractType == "salary":
+            return self.basePay
+        elif self.contractType == "hourly":
+            return self.hourlyWage * self.hoursWorked
+
+    def calcCommission(self):
+        commission = 0
+        if self.commissionType == "bonus":
+            commission += self.bonus
+        if self.commissionType == "contract":
+            commission += self.contractsLanded * self.commissionRate
+        return commission
 
     def get_pay(self):
-        pass
+        totalPay = self.calcContractPay() + self.calcCommission()
+        return totalPay
 
     def __str__(self):
-        return self.name
+        payDescription = f"{self.name} works on a {self.contractType} contract"
+        if self.contractType == "salary":
+            payDescription += f" of {self.basePay}"
+        elif self.contractType == "hourly":
+            payDescription += f" of {self.hoursWorked} hours at {self.hourlyWage}/hour"
+        payDescription += ". Their total pay is {0}.".format(self.getPay())
+        return payDescription
 
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
