@@ -2,7 +2,7 @@
 """ENTER YOUR SOLUTION HERE!"""
 
 class Employee:
-    def __init__(self, name, contractType, basePay, hourlyWage=None, hoursWorked=None,
+    def __init__(self, name, contractType=None, basePay=None, hourlyWage=None, hoursWorked=None,
                  commissionType=None, commissionRate=None, bonus=None, contractsLanded=None):
         self.name = name
         self.contractType = contractType
@@ -14,7 +14,7 @@ class Employee:
         self.bonus = bonus
         self.contractsLanded = contractsLanded
 
-     def calcContractPay(self):
+    def calcContractPay(self):
         if self.contractType == "salary":
             return self.basePay
         elif self.contractType == "hourly":
@@ -38,7 +38,7 @@ class Employee:
             payDescription += f" of {self.basePay}"
         elif self.contractType == "hourly":
             payDescription += f" of {self.hoursWorked} hours at {self.hourlyWage}/hour"
-        payDescription += ". Their total pay is {0}.".format(self.getPay())
+        payDescription += f". Their total pay is {self.get_pay()}."
         return payDescription
 
 
