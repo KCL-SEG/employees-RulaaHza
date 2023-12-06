@@ -19,7 +19,7 @@ class Employee:
             return self.basePay
         elif self.contractType == "hourly":
             return self.hourlyWage * self.hoursWorked
-
+    
     def calcCommission(self):
         commission = 0
         if self.commissionType == "bonus":
