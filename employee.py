@@ -2,24 +2,22 @@
 """ENTER YOUR SOLUTION HERE!"""
 
 class Employee:
-    def __init__(self, name, contractType=None, basePay=None, hourlyWage=None, hoursWorked=None,
-                 commissionType=None, commissionRate=None, bonus=None, contractsLanded=None):
-        self.name = name
-        self.contractType = contractType
+def __init__(self, basePay=0, hourlyWage=0, hoursWorked=0, bonus=0, contractsLanded=0, commissionRate=0):
         self.basePay = basePay
         self.hourlyWage = hourlyWage
         self.hoursWorked = hoursWorked
-        self.commissionType = commissionType
-        self.commissionRate = commissionRate
         self.bonus = bonus
         self.contractsLanded = contractsLanded
+        self.commissionRate = commissionRate
 
     def calcContractPay(self):
         if self.contractType == "salary":
             return self.basePay
         elif self.contractType == "hourly":
             return self.hourlyWage * self.hoursWorked
-    
+        else:
+            return 0  # or another suitable default value
+
     def calcCommission(self):
         commission = 0
         if self.commissionType == "bonus":
