@@ -24,7 +24,7 @@ class Employee:
         commission = 0
         if self.commissionType == "bonus":
             commission += self.bonus
-        if self.commissionType == "contract":
+        elif self.commissionType == "contract":
             commission += self.contractsLanded * self.commissionRate
         return commission
 
@@ -38,8 +38,15 @@ class Employee:
             payDescription += f" of {self.basePay}"
         elif self.contractType == "hourly":
             payDescription += f" of {self.hoursWorked} hours at {self.hourlyWage}/hour"
-        payDescription += f". Their total pay is {self.get_pay()}."
+
+        if self.commissionType == "bonus":
+            payDescription += f" and receives a bonus commission of {self.bonus}."
+        elif self.commissionType == "contract":
+            payDescription += f" and receives a commission for {self.contractsLanded} contract(s) at {self.commissionRate}/contract."
+
+        payDescription += f" Their total pay is {self.get_pay()}."
         return payDescription
+
 
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
